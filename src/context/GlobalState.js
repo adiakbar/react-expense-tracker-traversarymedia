@@ -10,7 +10,7 @@ const transactions = [
 
 const initialState = {
   transactions,
-  balance: calculateBalance(transactions)
+  ...calculateBalance(transactions)
 }
 
 export const GlobalContext = createContext()

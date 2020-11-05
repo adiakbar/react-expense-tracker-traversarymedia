@@ -12,6 +12,19 @@ export const calculateBalance = (transactions) => {
 
 export const AppReducer = (state, action) => {
   switch(action.type){
+    case "DELETE_TRANSACTION":
+      return {
+        ...state,
+        ...calculateBalance(state.transactions.filter(item => item.id !== action.payload.id)),
+        transactions: state.transactions.filter(item => item.id !== action.payload.id)
+      }
+
+    case "ADD_TRANSACTION":
+      return {
+        ...state,
+        ...calculateBalance([...state.transactions, action.payload]),
+        transactions: [...state.transactions, action.payload]
+      }
 
     default:
       return state
